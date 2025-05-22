@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelance Designer | Graphics Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="s-icon.png">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --secondary: #a29bfe;
+            --dark: #1e272e;
+            --darker: #0f1418;
+            --light: #f5f6fa;
+            --gray: #636e72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(30, 39, 46, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            background-color: rgba(15, 20, 24, 0.95);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light);
+        }
+
+        /* Header */
+        header { 
+            padding: 80px 0; 
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .back-btn {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-light);
+            transform: translateX(-5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40%;
+            max-width: 600px;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInRight 1s ease forwards 0.5s;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--dark);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .project-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-prev, .lightbox-next {
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: var(--primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(108, 92, 231, 0.2));
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .cta-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--light);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+            padding: 5rem 5%;
+        }
+
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            background: var(--darker);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background: var(--dark);
+            border-radius: 5px;
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll To Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            border: none;
+            outline: none;
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--darker);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 80px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-img {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 80%;
+                margin-top: 3rem;
+                animation: fadeInUp 1s ease forwards 0.5s;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .lightbox-nav {
+                padding: 0 10px;
+            }
+
+            .lightbox-prev, .lightbox-next {
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox-caption {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">Micky<span>Ctech</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <!-- header -->
+    <header>
+        <div class="container header-container">
+            <a class='back-btn' href='/'>
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Specialized <span>Graphic Design</span> Portfolio</h1>
+            <p>Showcasing my best work in thumbnails, business cards, social media posts, and branding designs. Every project is crafted with precision and creativity.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Design Work" class="hero-img">
+    </section>
+
+    <!-- Projects Section -->
+   <!-- Projects Section -->
+<section class="section" id="projects">
+    <div class="section-title">
+        <h2>My Design Services</h2>
+        <p>Professional graphic design solutions tailored to your needs</p>
+    </div>
+
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="thumbnail">YouTube Thumbnails</button>
+        <button class="filter-btn" data-filter="business-card">Business Cards</button>
+        <button class="filter-btn" data-filter="poster">Posters & Flyers</button>
+        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+        <button class="filter-btn" data-filter="social-media">Social Media</button>
+        <button class="filter-btn" data-filter="packaging">Packaging</button>
+    </div>
+
+    <div class="projects-grid">
+        <!-- YouTube Thumbnail Design -->
+        <div class="project-card" data-category="thumbnail">
+            <div class="project-img">
+                <img src="photo6.jpg" alt="YouTube Thumbnail Design">
+            </div>
+            <div class="project-info">
+                <h3>YouTube Thumbnail Design</h3>
+                <p>Eye-catching and high-converting thumbnails tailored for YouTube creators to boost views and engagement.</p>
+                <span class="project-tag">Thumbnail</span>
+                <span class="project-tag">YouTube</span>
+                <span class="project-tag">CTR Optimization</span>
+            </div>
+        </div>
+          <!-- YouTube Thumbnail Design 2 -->
+          <div class="project-card" data-category="thumbnail">
+            <div class="project-img">
+                <img src="photo4.jpeg" alt="Crypto Alert – Take the Trade Before It Pumps!">
+            </div>
+            <div class="project-info">
+                <h3>Crypto Alert – Take the Trade Before It Pumps!</h3>
+                <p>High-energy YouTube thumbnail design featuring bold text and popular crypto icons like Cardano, Litecoin, and Shiba Inu. The intense expression and “PUMP SOON” tag create urgency, making it ideal for crypto trading or market analysis content that focuses on trending altcoins and explosive opportunities.</p>
+                <span class="project-tag">#CryptoThumbnail</span>
+                <span class="project-tag">#YouTubeDesign</span>
+                <span class="project-tag">#GraphicDesign</span>
+            </div>
+        </div>
+        
+         <!-- YouTube Thumbnail Design 3 -->
+         <div class="project-card" data-category="thumbnail">
+            <div class="project-img">
+                <img src="photo3.jpeg" alt="BIG INFLOWS Coming! Is Bitcoin the Next to Pump?">
+            </div>
+            <div class="project-info">
+                <h3>BIG INFLOWS Coming! Is Bitcoin the Next to Pump?</h3>
+                <p>Major inflows are hitting the crypto market—could Bitcoin be the next to skyrocket? In this video, we break down the recent spike in institutional interest, compare BTC’s behavior to gold trends, and discuss if now is the time to take action. Don’t miss this crucial market update!</p>
+                <span class="project-tag">#Bitcoin</span>
+                <span class="project-tag">#CryptoNews</span>
+                <span class="project-tag">#BTCAnalysis</span>
+            </div>
+        </div>
+        
+         <!-- YouTube Thumbnail Design 4 -->
+         <div class="project-card" data-category="thumbnail">
+            <div class="project-img">
+                <img src="photo2.jpeg" alt="Bitcoin Breakout Imminent? Why You Should BUY NOW!">
+            </div>
+            <div class="project-info">
+                <h3>Bitcoin Breakout Imminent? Why You Should BUY NOW!</h3>
+                <p>Is this the perfect entry point for Bitcoin? In today’s video, we analyze market signals, whale activity, and technical indicators suggesting a major BTC move. Don’t miss your chance—this could be the breakout everyone’s been waiting for!</p>
+                <span class="project-tag">#Bitcoin</span>
+                <span class="project-tag">#BuyBitcoin</span>
+                <span class="project-tag">#CryptoAlert</span>
+            </div>
+        </div>
+        
+         <!-- YouTube Thumbnail Design 5 -->
+         <div class="project-card" data-category="thumbnail">
+            <div class="project-img">
+                <img src="photo1.jpg" alt="Top 4 Coins We're Buying Next! (Massive Potential)">
+            </div>
+            <div class="project-info">
+                <h3>Top 4 Coins We're Buying Next! (Massive Potential)</h3>
+                <p>Looking for the next big crypto opportunity? In this video, we reveal the 4 coins we’re investing in next, with huge upside potential. Whether you're a beginner or seasoned trader, don’t miss this deep dive into the most promising picks right now!</p>
+                <span class="project-tag">#Crypto</span>
+                <span class="project-tag">#CryptoNews</span>
+                <span class="project-tag">#Altcoins</span>
+            </div>
+        </div>
+         <!-- Logo and Business Card Design -->
+        <div class="project-card" data-category="business-card">
+            <div class="project-img">
+                <img src="
+https://digital-creative-saluation.netlify.app/photo/card.1.jpeg" alt="Vibrant Red Branding Kit – Business Cards & Product Box Mockup">
+            </div>
+            <div class="project-info">
+                <h3>Vibrant Red Branding Kit – Business Cards & Product Box Mockup</h3>
+                <p>A dynamic and high-impact visual showcasing a modern branding set in bold red tones. The design highlights floating business cards and a sleek product box mockup, ideal for showcasing brand identity concepts. Perfect for presentations, portfolios, or marketing collateral.</p>
+                <span class="project-tag">#BrandIdentity</span>
+                <span class="project-tag">#ProductMockup</span>
+                <span class="project-tag">#BusinessCardDesign</span>
+                <span class="project-tag">#ModernDesign</span>
+                <span class="project-tag">#GraphicResource</span>
+            </div>
+        </div>
+ <!-- Logo and Business Card Design 2 -->
+        <div class="project-card" data-category="business-card">
+            <div class="project-img">
+                <img src="
+https://digital-creative-saluation.netlify.app/photo/card2.jpeg" alt="Elegant Black & Gold Business Card Design">
+            </div>
+            <div class="project-info">
+                <h3>Elegant Black & Gold Business Card Design</h3>
+                <p>A sleek and professional business card template featuring a luxurious black and gold color scheme. The card showcases a modern layout with rounded corners, a 3D gold wave design, and a clean typographic hierarchy. Ideal for executives, managers, or high-end branding presentations.</p>
+                <span class="project-tag">#BusinessCardDesign</span>
+                <span class="project-tag">#LuxuryBranding</span>
+                <span class="project-tag">#BlackAndGold</span>
+            </div>
+        </div>
+        
+        <!-- Logo and Business Card Design 3-->
+        <div class="project-card" data-category="business-card">
+            <div class="project-img">
+                <img src="
+https://digital-creative-saluation.netlify.app/photo/card3.jpeg" alt="Modern Black & Gold Business Card Template">
+            </div>
+            <div class="project-info">
+                <h3>Modern Black & Gold Business Card Template</h3>
+                <p>A premium business card design with a sophisticated black background and elegant gold accents. Featuring clean iconography, bold typography, and a modern logo placeholder, this card is perfect for professionals aiming for a sleek and luxurious brand image. Ideal for directors, consultants, or creative leads.</p>
+                <span class="project-tag">#LuxuryBusinessCard</span>
+                <span class="project-tag">#BlackGoldDesign</span>
+                <span class="project-tag">#CorporateBranding</span>
+            </div>
+        </div>
+
+        <!-- E-commerce Product Editing -->
+        <div class="project-card" data-category="ecommerce">
+            <div class="project-img">
+                <img src="
+https://digital-creative-saluation.netlify.app/photo/ecom1.jpeg" alt="Bold Wilderness – X-MEN Deodorant Ad Concept">
+            </div>
+            <div class="project-info">
+                <h3>Bold Wilderness – X-MEN Deodorant Ad Concept</h3>
+                <p>A powerful and masculine product visual featuring the X-MEN Mystery Body Deodorant set against a dramatic mountainous backdrop. The rugged terrain and cool blue tones evoke a sense of adventure and mystery, perfectly aligning with the product’s branding message: “Smell Something Nice.”</p>
+                <span class="project-tag">#XMenDeodorant</span>
+                <span class="project-tag">#MysteryScent</span>
+                <span class="project-tag">#BoldDesign</span>
+            </div>
+        </div>
+        
+
+        <!-- Social Media Ad Graphics -->
+        <div class="project-card" data-category="social-media">
+            <div class="project-img">
+                <img src="
+https://digital-creative-saluation.netlify.app/photo/adverticement1.png" alt="Social Media Ad Graphics">
+            </div>
+            <div class="project-info">
+                <h3>Social Media Ad Graphics</h3>
+                <p>Engaging visuals for Facebook, Instagram, LinkedIn—perfect for sponsored ads and brand promotions.</p>
+                <span class="project-tag">Social Media</span>
+                <span class="project-tag">Ads</span>
+                <span class="project-tag">Marketing</span>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- contact -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Get In Touch</h2>
+            <p>Ready to improve your website? Let's discuss your project.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Enugu, Nigeria</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                      <a href="mickyctech@gmail.com">mickyctech@gmail.com</a>
+                    
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>+2348064634642</p>
+                    </div>
+                </div>
+                <h3>Follow Me</h3>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/michael_simtech/" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/don.chisyno/" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/don-chisyno-9268a6307" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/chisyno" class="social-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p class="copyright">© 2025 DesignWorks. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll To Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <div class="lightbox-prev">&#10094;</div>
+            <div class="lightbox-next">&#10095;</div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Filter Projects
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter projects
+                const filter = button.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Scroll animation for project cards
+        const animateOnScroll = () => {
+            const cards = document.querySelectorAll('.project-card');
+            const windowHeight = window.innerHeight;
+            
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const scrollPosition = windowHeight - 100;
+                
+                if (cardPosition < scrollPosition) {
+                    card.classList.add('animate');
+                }
+            });
+        };
+        document.addEventListener("DOMContentLoaded", function () {
+        const cta = document.querySelector('.cta-section');
+        function showCTAOnScroll() {
+            const rect = cta.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                cta.classList.add('visible');
+                window.removeEventListener('scroll', showCTAOnScroll);
+            }
+        }
+        window.addEventListener('scroll', showCTAOnScroll);
+        showCTAOnScroll(); // Run once in case it's already in view
+    });
+
+        // Initial check on load
+        window.addEventListener('load', animateOnScroll);
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        // Lightbox functionality
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxCaption = document.querySelector('.lightbox-caption');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        
+        // Get all project images
+        const projectImages = document.querySelectorAll('.project-img img');
+        let currentImageIndex = 0;
+        
+        // Open lightbox when clicking on a project image
+        projectImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentImageIndex = index;
+                updateLightbox();
+                lightbox.classList.add('show');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+            });
+        });
+        
+        // Close lightbox
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Navigation between images
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+            updateLightbox();
+        });
+        
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % projectImages.length;
+            updateLightbox();
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('show')) return;
+            
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                currentImageIndex = (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+                updateLightbox();
+            } else if (e.key === 'ArrowRight') {
+                currentImageIndex = (currentImageIndex + 1) % projectImages.length;
+                updateLightbox();
+            }
+        });
+        
+        // Update lightbox content
+        function updateLightbox() {
+            const currentImg = projectImages[currentImageIndex];
+            lightboxImg.src = currentImg.src;
+            lightboxImg.alt = currentImg.alt;
+            
+            // Get the project title and description
+            const projectCard = currentImg.closest('.project-card');
+            const title = projectCard.querySelector('h3').textContent;
+            const description = projectCard.querySelector('p').textContent;
+            
+            lightboxCaption.textContent = `${title} - ${description}`;
+        }
+    </script>
+</body>
+</html>
